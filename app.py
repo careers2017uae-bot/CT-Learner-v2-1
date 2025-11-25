@@ -513,6 +513,7 @@ def main():
         for meta, ct_scores, ct_suggest, ct_highlights in zip(
             submissions, ct_scores_all, ct_suggestions_all, ct_highlights_all):
             
+            
             row = {
                 "filename": meta.get("filename", "untitled"),
                 "word_count": len(meta.get("text", "").split()),
@@ -664,8 +665,24 @@ def main():
             df_summary = pd.DataFrame(rows)
             
             # Display preview
+            # Display preview - Simplified version
             st.markdown("#### Preview of Export Data")
-            st.dataframe(df_summary[["filename", "word_count", "avg_ct_score", "text_preview"]])
+            
+            # Create a simplified dataframe for display
+            simple_df = pd.DataFrame({
+                "Filename": df_summary["filename"],
+                "Word Count": df_summary["word_count"],
+                "Overall CT Score": df_summary["avg_ct_score"].round(3),
+                "Text Preview": df_summary["text_preview"]
+            })
+            
+            # Add individual CT scores as separate columns for selected standards only
+            for standard in selected_standards:
+                simple_df[standard] = df_summary["ct_scores"].apply(
+                    lambda x: round(json.loads(x).get(standard, 0), 3)
+                )
+            
+            st.dataframe(simple_df, use_container_width=True)
             
             # Export options
             col1, col2 = st.columns(2)
