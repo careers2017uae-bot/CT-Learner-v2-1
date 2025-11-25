@@ -155,7 +155,7 @@ def sentence_split(text: str) -> List[str]:
     return [s.strip() for s in sents if s.strip()]
 
 def tokenize_simple(s: str) -> List[str]:
-    return re.findall(r"\w+['-]?\w*|\w+", s.lower()
+    return re.findall(r"\w+['-]?\w*|\w+", s.lower())
 
 # ---------------------
 # Enhanced CT Rubric with Selective Highlighting
