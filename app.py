@@ -432,7 +432,7 @@ def main():
         "Choose standards:",
         options=list(PAUL_CT_RUBRIC.keys()),
         default=default_standards,
-        format_func=lambda x: f"{COLOR_BLOCKS[x]} {x}",
+         format_func=lambda x: f"{COLOR_EMOJIS[PAUL_CT_RUBRIC[x]['color']]} {x}",
         help="Select which critical thinking standards to analyze and highlight"
     )
         
