@@ -415,15 +415,26 @@ def main():
         
         # Select all by default
         default_standards = list(PAUL_CT_RUBRIC.keys())
-        
+        # Define color emoji mapping
+        COLOR_EMOJIS = {
+            "#FF6B6B": "🔴",  # Clarity - Red
+            "#4ECDC4": "🔵",  # Accuracy - Teal
+            "#45B7D1": "🔷",  # Relevance - Blue
+            "#96CEB4": "🟢",  # Significance - Green
+            "#FFEAA7": "🟡",  # Logic - Yellow
+            "#DDA0DD": "🟣",  # Precision - Purple
+            "#98D8C8": "💚",  # Fairness - Mint
+            "#F7DC6F": "🟠",  # Depth - Gold
+            "#BB8FCE": "🟪",  # Breadth - Lavender
+        }
         # Create multi-select with color previews
         selected_standards = st.multiselect(
-            "Choose standards:",
-            options=list(PAUL_CT_RUBRIC.keys()),
-            default=default_standards,
-            format_func=lambda x: f"<div style='display: inline-block;'><div class='standard-color-preview' style='background-color: {PAUL_CT_RUBRIC[x]['color']};'></div>{x}</div>",
-            help="Select which critical thinking standards to analyze and highlight"
-        )
+        "Choose standards:",
+        options=list(PAUL_CT_RUBRIC.keys()),
+        default=default_standards,
+        format_func=lambda x: f"{COLOR_EMOJIS[PAUL_CT_RUBRIC[x]['color']]} {x}",
+        help="Select which critical thinking standards to analyze and highlight"
+    )
         
         # Quick selection buttons
         col1, col2 = st.columns(2)
