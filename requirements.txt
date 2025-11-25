@@ -1,0 +1,8 @@
+streamlit>=1.28.0
+pandas>=2.0.0
+numpy>=1.24.0
+plotly>=5.15.0
+docx>=0.2.4
+pdfplumber>=0.9.0
+python-docx>=0.8.11
+openpyxl>=3.1.0
