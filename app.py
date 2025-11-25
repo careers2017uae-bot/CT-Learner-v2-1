@@ -530,21 +530,29 @@ def main():
         # Results section with tabs for better organization
         st.markdown("---")
         st.header("📈 Analysis Results")
+        st.markdown("""
+        <style>
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 24px;
+        }
         
-        # Show selected standards summary
-        st.subheader(f"🎯 Analyzing {len(selected_standards)} CT Standards")
-        cols = st.columns(min(6, len(selected_standards)))
-        for idx, standard in enumerate(selected_standards):
-            with cols[idx % len(cols)]:
-                color = PAUL_CT_RUBRIC[standard]["color"]
-                st.markdown(
-                    f'<div style="text-align: center; padding: 0.5rem; border-radius: 5px; border: 2px solid {color};">'
-                    f'<div style="background-color: {color}; width: 20px; height: 20px; border-radius: 50%; display: inline-block; margin-right: 8px;"></div>'
-                    f'<strong>{standard}</strong>'
-                    f'</div>',
-                    unsafe_allow_html=True
-                )
+        .stTabs [data-baseweb="tab"] {
+            height: 50px;
+            white-space: pre-wrap;
+            background-color: #f0f2f6;
+            border-radius: 8px 8px 0px 0px;
+            gap: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 18px;
+        }
         
+        .stTabs [aria-selected="true"] {
+            background-color: #1f77b4;
+            color: white;
+        }
+        </style>
+        """, unsafe_allow_html=True)
         tab1, tab2, tab3 = st.tabs(["📊 Dashboard", "📝 Submissions", "📤 Export"])
         
         with tab1:
